@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  version: require('../../package.json').version,
+  BASE_URL: 'https://devserver.yamasee-skypath.com',
+  C_YAMASEE_COMPANY: 'Yamasee',
+  C_ADMIN: 'admin',
+  C_DISPATCHER: 'dispatcher',
+  C_PILOT: 'pilot', // as constant
+  LOG_LEVEL: 'debug'
 };
 
 /*
