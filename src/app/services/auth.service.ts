@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import {User} from '../classes/user';
 import {Router} from '@angular/router';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, empty, Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 
 const USER_KEY = 'logged_in_user';
@@ -64,7 +64,21 @@ export class AuthService {
       this.notifySubscribers();
     }
   }
+  public refreshAccessToken(): Observable<string> {
+    if (!this._loggedInUser) {
+      // TODO logout
+      return empty();
+    }
 
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<any>( environment.BASE_URL + '/v2/refresh_token', { token: this._loggedInUser.refresh_token, user_id: this._loggedInUser.user_id }).pipe(
+      tap(resp => {
+        this._loggedInUser.refresh_token = resp.new_refresh_token;
+        this._loggedInUser.token = resp.new_token;
+        localStorage.setItem(USER_KEY, JSON.stringify(this._loggedInUser));
+      })
+    );
+  }
   private notifySubscribers(): void {
     this._loggedInUserSubject.next({
       user: this._loggedInUser,
