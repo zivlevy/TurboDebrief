@@ -45,6 +45,9 @@ export class AuthService {
   public get accessToken(): string { return !this.isLoggedIn ? null : this._loggedInUser.token; }
 
   public login(username: string, password: string): Observable<User>{
+    console.log(username);
+    console.log(password);
+
     return this.http.post<User>(environment.BASE_URL +  '/v2/login', { user_id: username, password }).pipe(
       tap((resp) => this.setUser(resp))
     );
@@ -53,6 +56,7 @@ export class AuthService {
   public setUser(authResponse: User): any {
     if (authResponse) {
       const user = new User(authResponse);
+      console.log(user);
       this._loggedInUser = user;
       localStorage.setItem(USER_KEY, JSON.stringify(user));
       this.notifySubscribers();

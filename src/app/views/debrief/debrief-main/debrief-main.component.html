@@ -1,0 +1,31 @@
+
+<p-toast position="top-right" dir="ltr"></p-toast>
+<!-- TURBULENCE SIDE -->
+<p-sidebar [(visible)]="isTurbulenceVisible" position="left" [style]="{width: '500px'}" [showCloseIcon]="false">
+  <ym-debrief-turbo-list></ym-debrief-turbo-list>
+</p-sidebar>
+
+<!-- RAW SIDE -->
+<p-sidebar [(visible)]="isRawVisible" position="left" [style]="{width: '500px'}" [showCloseIcon]="false">
+  <ym-data-items-list></ym-data-items-list>
+</p-sidebar>
+
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <button class="task-buttons p-mr-2" pButton type="button" label="Turbulence" (click)="showTurbulence()"></button>
+    <button class="task-buttons" pButton type="button" label="Raw" (click)="showRaw()"></button>
+
+  </div>
+  <div class="p-toolbar-group-right toolbar-center">
+
+  </div>
+
+  <div class="p-toolbar-group-right toolbar-left">
+    <button class="task-buttons" pButton type="button" label="home" (click)="goHome()"></button>
+<!--    <p-button class="logout-button" icon="fa fa-sign-out-alt" label="יציאה" styleClass="p-button-danger"-->
+<!--              (click)="logout()"></p-button>-->
+
+  </div>
+</p-toolbar>
+
+<ym-graph></ym-graph>

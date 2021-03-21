@@ -1,0 +1,29 @@
+
+
+.background{
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.4;
+;
+}
+
+
+.card {
+  height: 50vh;
+  width: 25vw;
+  background-color: #CFD8DC;
+}
+
+.version {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: gray;
+}
+
+
+

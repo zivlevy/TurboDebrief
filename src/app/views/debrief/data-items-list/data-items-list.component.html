@@ -1,0 +1,83 @@
+<div
+  style="
+    margin: 0 !important;
+    height: 100vh;
+  "
+>
+
+  <div class="p-grid top-bar" dir="rtl">
+    <div class="p-col">
+    </div>
+
+    <div class="p-col title-center">Raw Data</div>
+    <div class="p-col top-title-center">
+        <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                       placeholder="Search..."/>
+            </span>
+    </div>
+  </div>
+
+  <p-table #dt
+           id="endPoints"
+           [value]="items"
+           [columns]="cols"
+           [resizableColumns]="true"
+           autoLayout="false"
+           columnResizeMode="expand"
+           sortMode="multiple"
+           [scrollHeight]="tableHeight"
+           [scrollable]="true"
+           [loading]="loading"
+           reorderableColumns="true"
+           [rowHover]="true"
+           tableStyleClass="epi-table-class"
+           dataKey="timeStampMiliseconds"
+           dir="ltr"
+           styleClass="p-datatable-gridlines p-datatable-sm p-datatable-striped"
+           [filterDelay]="0"
+           [(selection)]="selectArr"
+           selectionMode="multiple"
+           (selectionChange)="selectionChange()"
+           [metaKeySelection]="true"
+           [virtualScroll]="true" [virtualRowHeight]="32"
+           [rows] = "80"
+  >
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col *ngFor="let col of columns" [style.width]="col.width">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
+          <div>
+            <span>{{col.header}}</span>
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+
+
+    <!--  BODY    -->
+    <ng-template pTemplate="body" let-items let-rowData let-rowIndex="rowIndex">
+      <tr #img  [pContextMenuRow]="rowData"
+          [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex"
+      >
+        <td *ngFor="let col of cols" [ngSwitch]="col.field">
+
+          <div *ngSwitchCase="'ts'">
+            {{rowData.ts * 1000 | date : 'dd/MM/YY HH:mm:ss'}}
+          </div>
+
+          <div *ngSwitchDefault>
+            {{items[col.field]}}
+          </div>
+
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

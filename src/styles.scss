@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+
+  overflow: hidden;
+  margin: 0;
+  //padding: 1em;
+  background-color: #CFD8DC;
+  font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+}
+
+html {
+  font-size: 14px;
+}
+
+// prime ng overrides
+.p-dialog .p-dialog-header .p-dialog-title {
+  font-size: 2.0rem;
+}

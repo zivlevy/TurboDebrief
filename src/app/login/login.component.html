@@ -1,1 +1,44 @@
-<p>login works!</p>
+<p-toast position="top-right" dir="ltr"></p-toast>
+<!--<img src="../../assets/images/background.jpg" class="background">-->
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+  <div class="p-grid  p-justify-center p-align-center" style="height:100vh">
+    <div class="p-xl-3 p-lg-6 p-md-8 p-sm-10">
+      <p-panel header="מערכת הזמנת חיסונים" dir="ltr">
+        <div class="p-grid  p-justify-center p-align-center">
+          <!-- EMAIL -->
+          <div class="p-col-12">
+            <div class="p-inputgroup" dir="ltr">
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input formControlName="email" type="text" pInputText placeholder="Email" autocomplete="email">
+            </div>
+            <small *ngIf="f.email.errors && submitted" class="p-error">legal email required</small>
+          </div>
+
+          <!-- PASSWORD -->
+          <div class="p-field p-col-12">
+            <div class="p-inputgroup" dir="ltr">
+              <span class="p-inputgroup-addon"><i class="pi pi-key"></i></span>
+              <input id="email" formControlName="password" type="password" pInputText placeholder="Password" autocomplete="current-password">
+            </div>
+            <small *ngIf="f.password.errors && submitted" class="p-error">password required</small>
+          </div>
+
+        </div>
+        <!-- LOGIN BUTTON  -->
+        <div class="p-grid p-fluid" style="margin-top: 10px">
+          <div class="p-col-8 p-offset-2">
+            <button pButton pRipple type="button"
+                    label="Login" class="p-button-outlined"
+                    (click)="onSubmit()"></button>
+          </div>
+          <div class="p-col-12" style="text-align: center">
+          </div>
+        </div>
+      </p-panel>
+      <div class="extra-page-footer version">
+        <div>Version : {{version}}</div>
+      </div>
+    </div>
+  </div>
+</form>
+
